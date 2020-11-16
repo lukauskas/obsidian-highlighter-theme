@@ -1,15 +1,7 @@
-# obsidian_ia
-A minimal and clean theme for [Obsidian](https://obsidian.md)
+# Obsidian-alabaster-theme
+A minimal and clean theme for [Obsidian](https://obsidian.md).
+
+Based on the code from [rdvd/obsidian_ia](https://github.com/rcvd/obsidian_ia) theme.
+Theme itself is based on [sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster)
 
 Font: [iA Writer Quattro](https://github.com/iaolo/iA-Fonts/tree/master/iA%20Writer%20Quattro) - Must be installed locally
-
-Heavily inspired by [iA Writer](https://ia.net/writer).
-
-![obsidian_ia - Theme](lightdark.png)
-
-![obsidian_ia - Light Theme](light.png)
-
-![obsidian ia - Dark Theme](dark.png)
-
-
-WORK IN PROGRESS / FEEDBACK AND BUG REPORTS APPRECIATED
