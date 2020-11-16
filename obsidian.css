@@ -1,7 +1,8 @@
 :root {
-	--quattro-font: 	'iA Writer Quattro V', 'iA Writer Quattro S', sans-serif;
-	--font-monospace: 	'iA Writer Mono V', 'iA Writer Mono S', monospace;
-	--default-font:		-apple-system, BlinkMacSystemFont, var(--font-monospace);
+	--normal-font: 	'Helvetica Neue', sans-serif;
+	--font-monospace: 'Fira Code', monospace;
+	--default-font:	-apple-system, BlinkMacSystemFont, var(--font-monospace);
+
 }
 
 /* Standard colors */
@@ -16,11 +17,11 @@
 
 
 .theme-light {
-	--background-code: 				#edeeee;
-	--background-code-preview:  	#f0f0f0;
-	--background-preview:			#fcfcfc;
-	--background-primary: 			#f7f7f7;	/* Editor */
-	--background-primary-alt: 		#f7f7f7;  /* Selected pane and borders */
+	--background-code: 				#f7f7f7;
+	--background-code-preview:  	var(--background-code);
+	--background-preview:			var(--background-color);
+	--background-primary: 			var(--background-color);	/* Editor */
+	--background-primary-alt: 		var(--background-color);  /* Selected pane and borders */
 	--background-secondary: 		#fcfcfc;  /* File Pane */
 	--background-secondary-alt: 	#ecebea;  /* App Background */
 	--background-tag: 				var(--highlight-pink);
@@ -32,18 +33,20 @@
 	--menu-selection-text:			#191919;	/* Menu Selected Item Text */
 	--scrollbar-bg:  				#fcfcfc;
 	--table-line:					#f1f1f1;
-	--text-accent:					#00b1ef;
-	--text-accent-hover:			#00c1ff;
+	--text-accent:					var(--highlight-blue);
+	--text-accent-hover:			var(--strong-blue);
 	--text-faint:					#9c9c9c;
 	--text-highlight-bg:			rgba(255,228,0,0.5);
 	--text-muted:					#101010;
-	--text-normal:					#191919;
+	--text-normal:					var(--main-black);
 	--text-on-accent:				#f7f7f7;
 	--text-selection:				#c9e9f4;
-	--text-tag:						#8c8c8c;
+	--text-tag:						var(--text-normal);
 	--background-quick:				#f7f7f7;
 	--file-hr: 						#ecebea;
 	--leaf-handle:					#ecebea;
+	--background-link:              var(--highlight-blue);
+	--background-link-unresolved:   var(--highlight-yellow);
 }
 
 
@@ -86,22 +89,30 @@ html,
 body,
 .search-empty-state,
 .page-title,
-.cm-header-1,
-.cm-header-2,
-.cm-header-3,
-.cm-header-4,
-.cm-header-5,
-.cm-header-6,
-.cm-s-obsidian pre.HyperMD-codeblock,
-.markdown-preview-view h1,
-.markdown-preview-view h2,
-.markdown-preview-view h3,
-.markdown-preview-view h4,
-.markdown-preview-view h5,
-.markdown-preview-view h6,
 .markdown-preview-view code {
-	font-size: 16px;
-	line-height: 26px;
+	font-size: 11pt;
+	/* line-height: 26px; */
+}
+
+.cm-s-obsidian pre.HyperMD-codeblock {
+	font-size: 10pt;
+}
+
+/* Headings */
+/* Markdown Headings */
+.cm-header-1, .markdown-preview-view h1 {
+	font-size: 1.2em;
+}
+
+.cm-header-2, .markdown-preview-view h2 {
+	font-size: 1.1em;
+}
+
+.cm-header-3, .markdown-preview-view h3,
+.cm-header-4, .markdown-preview-view h4,
+.cm-header-5, .markdown-preview-view h5,
+.cm-header-6, .markdown-preview-view h6 {
+	font-size: inherit;
 }
 
 /* Fix all font-family settings to use the the font variables */
@@ -119,7 +130,7 @@ input[type="number"],
 
 .markdown-source-view,
 .markdown-preview-view {
-	font-family: var(--quattro-font);
+	font-family: var(--normal-font);
 }
 
 .cm-s-obsidian .hmd-fold-html-stub,
@@ -149,7 +160,7 @@ input[type="number"],
 .cm-s-obsidian span.cm-formatting-task,
 .cm-s-obsidian span.cm-formatting-list,
 .cm-s-obsidian span.cm-formatting-quote {
-	font-family: var(--font-monospace);
+	font-family: var(--font-normal);
 }
 
 input[type="text"],
@@ -195,18 +206,29 @@ input[type="number"] {
 .cm-s-obsidian span.cm-tag,
 .cm-s-obsidian span.cm-hmd-escape-char,
 .cm-s-obsidian span.cm-hmd-escape-backslash,
-.cm-s-obsidian span.cm-link,
-.cm-s-obsidian span.cm-hmd-internal-link,
 .cm-s-obsidian span.cm-inline-code,
 .cm-s-obsidian span.cm-math,
 .cm-s-obsidian span.hmd-fold-math-placeholder   {
 	color: inherit;
 }
 
+
+/* Links are blue */
+
 .cm-s-obsidian span.cm-url,
+.cm-s-obsidian span.cm-link,
 .cm-s-obsidian pre.HyperMD-footnote span.cm-hmd-footnote,
-.cm-s-obsidian span.cm-formatting-link  {
-	color: var(--menu-selection);
+.cm-s-obsidian span.cm-hmd-internal-link,
+.cm-s-obsidian span.cm-formatting-link,
+.markdown-preview-view .internal-link,
+.markdown-preview-view .external-link {
+	background-color: var(--background-link);
+	color: var(--text-normal);
+}
+
+.markdown-preview-view .internal-link.is-unresolved {
+	background-color: var(--background-link-unresolved);
+	color: var(--text-normal);
 }
 
 /* Format tags */
@@ -215,7 +237,7 @@ input[type="number"] {
 	border-bottom: 1px solid var(--background-secondary-alt);
 	border-top: 1px solid var(--background-secondary-alt);
 	color: var(--text-tag);
-	font-size: 14px;
+	font-size: inherit;
 	padding-bottom: 1px;
 	padding-top: 1px;
 	text-decoration: none;
@@ -254,7 +276,7 @@ input[type="number"] {
 	background-color: var(--background-tag);
 	border: 1px solid var(--background-secondary-alt);
 	color: var(--text-tag);
-	font-size: 14px;
+	font-size: 1em;
 	padding-bottom: 1px;
 	padding-top: 1px;
 	text-decoration: none;
@@ -283,7 +305,7 @@ input[type="number"] {
 }
 
 .markdown-preview-view section.footnotes {
-	font-size: 14px;
+	font-size: 0.8rem;
 }
 
 /* Remove external link icon */
@@ -300,7 +322,7 @@ input[type="number"] {
 .markdown-preview-view code {
 	background-color: var(--background-code-preview);
 	color: inherit;
-	font-size: 14px;
+	font-size: 1em;
 }
 
 /* Markdown Preview Tables */
@@ -312,7 +334,7 @@ input[type="number"] {
 .markdown-preview-view th {
 	background-color: var(--background-preview);
 	border: none;
-	font-size: 14px;
+	font-size: 1em;
 	padding: 4px 10px;
 }
 .markdown-preview-view th {
@@ -372,30 +394,7 @@ input[type="number"] {
 	margin-bottom: 0;
 }
 
-/* Markdown Headings */
-.markdown-preview-view h1 {
-	font-size: 16px;
-	line-height: 24px;
-	margin-top: 30px;
-	margin-bottom: 16px;
-}
 
-.markdown-preview-view h2 {
-	font-size: 16px;
-	line-height: 24px;
-	margin-bottom: 30px;
-	margin-top: 10px;
-}
-
-.markdown-preview-view h3,
-.markdown-preview-view h4,
-.markdown-preview-view h5,
-.markdown-preview-view h6 {
-	font-size: inherit;
-	line-height: 24px;
-	margin-bottom: 0px;
-	margin-top: 4px;
-}
 
 .markdown-preview-view h6 {
 	line-height: 16px;
@@ -462,11 +461,11 @@ input[type="number"] {
 }
 
 .markdown-embed-title {
-	font-size: 16px;
+	font-size: 1em;
 }
 
 .file-embed-title {
-	font-size: 16px;
+	font-size: 1em;
 }
 
 /* USER INTERFACE SETTINGS */
