@@ -18,6 +18,7 @@
 
 .theme-light {
 	--background-code: 				#f7f7f7;
+	--background-code-darker: 				#f0f0f0;
 	--background-code-preview:  	var(--background-code);
 	--background-preview:			var(--background-color);
 	--background-primary: 			var(--background-color);	/* Editor */
@@ -96,7 +97,8 @@ input[type="number"],
 }
 
 .markdown-source-view,
-.markdown-preview-view {
+.markdown-preview-view,
+.cm-s-view {
 	font-family: var(--normal-font);
 }
 
@@ -148,6 +150,14 @@ input[type="number"] {
 	background-color: var(--background-code);
 }
 
+.cm-s-obsidian span.cm-inline-code {
+	background-color: var(--background-code);
+}
+
+.cm-s-obsidian span.cm-inline-code:not(.cm-formatting):not(.cm-hmd-indented-code):not(.obsidian-search-match-highlight) {
+    background-color: var(--background-code);
+}
+
 .cm-s-obsidian pre.HyperMD-codeblock.HyperMD-codeblock-begin {
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -156,6 +166,16 @@ input[type="number"] {
 .cm-s-obsidian pre.HyperMD-codeblock.HyperMD-codeblock-end {
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
+}
+
+/* Blockquotes */
+.cm-s-obsidian pre.HyperMD-quote {
+	border-left: 2pt solid var(--text-normal);
+}
+
+.cm-s-obsidian pre.HyperMD-quote span.cm-quote {
+	color: var(--text-normal);
+
 }
 
 /* Math */
@@ -320,13 +340,10 @@ input[type="number"] {
 
 .markdown-preview-view blockquote {
 	border: 0;
-	border-left: 1px solid var(--text-normal);
+	border-left: 2pt solid var(--text-normal);
 	border-radius: 0;
-	margin-bottom: 25px;
-	margin-inline-start: 10px;
-	margin-top: 25px;
-	padding-bottom: 2px;
-	padding-top: 2px;
+	/* margin-bottom: 10pt !important; */
+	margin-top: 10pt
 }
 
 .markdown-preview-view blockquote:first-child {
@@ -334,12 +351,12 @@ input[type="number"] {
 	margin-left: 0;
 }
 
-.markdown-preview-view blockquote:last-child {
-	margin-bottom: 25px;
-}
-
 .markdown-preview-view blockquote p:first-child {
 	margin-bottom: 0;
+}
+
+.markdown-preview-view blockquote:last-child {
+       margin-bottom: 25px;
 }
 
 .markdown-preview-view ul {
