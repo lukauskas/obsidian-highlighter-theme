@@ -1,7 +1,16 @@
 # Obsidian-alabaster-theme
-A minimal and clean theme for [Obsidian](https://obsidian.md).
 
-Based on the code from [rdvd/obsidian_ia](https://github.com/rcvd/obsidian_ia) theme.
-Theme itself is based on [sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster)
+A minimal and clean theme for [Obsidian](https://obsidian.md). 
+The intention is to make notes look like printed on paper, with text highlighted using a highlighter pen.
 
-Font: [iA Writer Quattro](https://github.com/iaolo/iA-Fonts/tree/master/iA%20Writer%20Quattro) - Must be installed locally
+Only light UI is supported.
+
+Based on the code from [rdvd/obsidian_ia](https://github.com/rcvd/obsidian_ia) theme. Theme itself is inspired by [sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster). 
+
+Uses Helvetica for main text and and [Fira Code](https://github.com/tonsky/FiraCode) for monospaced items.
+
+## Screenshots
+
+![screenshots/screenshot-welcome-to-obsidian.png](screenshots/screenshot-welcome-to-obsidian.png)
+
+![screenshots/screenshot-more-markdown-examples.png](screenshots/screenshot-more-markdown-examples.png)
