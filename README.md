@@ -14,3 +14,8 @@ Uses Helvetica for main text and and [Fira Code](https://github.com/tonsky/FiraC
 ![screenshots/screenshot-welcome-to-obsidian.png](screenshots/screenshot-welcome-to-obsidian.png)
 
 ![screenshots/screenshot-more-markdown-examples.png](screenshots/screenshot-more-markdown-examples.png)
+
+## Installation
+
+1. Download `obsidian.css` and place/symlink it to the vault root folder.
+2. Enable the custom CSS setting in Options > Appearance
