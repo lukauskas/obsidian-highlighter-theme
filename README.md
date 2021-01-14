@@ -1,6 +1,6 @@
-# Obsidian-alabaster-theme
+# Obsidian-highlighter-theme
 
-A minimal and clean theme for [Obsidian](https://obsidian.md). 
+Minimal and clean theme for [Obsidian](https://obsidian.md). 
 The intention is to make notes look like printed on paper, with text highlighted using a highlighter pen.
 
 Only light UI is supported.
