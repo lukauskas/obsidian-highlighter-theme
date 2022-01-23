@@ -142,6 +142,11 @@ input[type="number"] {
 	font-size: 13px;
 }
 
+/* fix math tags getting truncated in live preview */
+.ͼ1 .cm-scroller {
+	line-height: inherit;
+}
+
 /* MARKDOWN EDITOR SETTINGS */
 
 /* Code Block Markdown */
