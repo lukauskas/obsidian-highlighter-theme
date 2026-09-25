@@ -1,15 +1,20 @@
-# Obsidian-highlighter-theme
+# Obsidian Highlighter theme
 
-Minimal and clean theme for [Obsidian](https://obsidian.md). 
-The intention is to make notes look like printed on paper, with text highlighted using a highlighter pen.
+Minimal and clean theme for [Obsidian](https://obsidian.md).
+The intention is to make notes look like printed on paper, with text highlighted using a highlighter pen:
+links in blue, unresolved links in yellow, tags in pink, and `==highlights==` in bright yellow.
 
-Only light UI is supported.
+Typography borrows from LaTeX: notes are set in Charter (bundled with macOS), headings follow the article-class scale, and tables use the "booktabs" style.
+Code blocks use the colours of [sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster), which inspired the theme.
+Lists use dashes instead of dots. The interface keeps your system font.
 
-Based on the code from [rdvd/obsidian_ia](https://github.com/rcvd/obsidian_ia) theme. Theme itself is inspired by [sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster). 
+Works with Obsidian 1.5 and later, in both light and dark mode.
 
-Uses Helvetica for main text and and [Fira Code](https://github.com/tonsky/FiraCode) for monospaced items.
+Originally based on the code from [rcvd/obsidian_ia](https://github.com/rcvd/obsidian_ia).
 
 ## Screenshots
+
+_Screenshots below are from the original version of the theme (Obsidian 0.10)._
 
 ![screenshots/screenshot-welcome-to-obsidian.png](screenshots/screenshot-welcome-to-obsidian.png)
 
@@ -17,5 +22,16 @@ Uses Helvetica for main text and and [Fira Code](https://github.com/tonsky/FiraC
 
 ## Installation
 
-1. Download `obsidian.css` and place/symlink it to the vault root folder.
-2. Enable the custom CSS setting in Options > Appearance
+1. In your vault, create the folder `.obsidian/themes/Highlighter/`.
+2. Copy (or symlink) `theme.css` and `manifest.json` into it.
+3. In Obsidian, open **Settings → Appearance → Themes** and pick **Highlighter**.
+
+## Customising
+
+With the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin installed you can change:
+
+- the text font: serif (Charter), system sans, or the original Helvetica;
+- justified paragraphs (hyphenation is always on);
+- full-size properties instead of the compact block;
+- round bullets instead of dashes;
+- the colour of each highlighter pen (links, unresolved links, tags, highlights), separately for light and dark mode.

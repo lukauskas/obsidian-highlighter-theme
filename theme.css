@@ -1,0 +1,596 @@
+/*
+ * Highlighter — a minimal theme for Obsidian.
+ *
+ * Notes look like a printed page marked up with highlighter pens: links in
+ * blue, unresolved links in yellow, tags in pink, ==highlights== in bright
+ * yellow. Typography borrows from LaTeX: a serif text face, restrained
+ * heading sizes, booktabs tables. Code colours follow tonsky's Alabaster.
+ *
+ * Built on Obsidian 1.x CSS variables; almost everything is a variable
+ * override, plus a few targeted rules for the pen effect.
+ */
+
+/* @settings
+name: Highlighter
+id: highlighter-theme
+settings:
+  -
+    id: hl-heading-type
+    title: Typography
+    type: heading
+    level: 2
+    collapsed: false
+  -
+    id: font-text-theme
+    title: Text font
+    type: variable-select
+    default: "Charter, 'Bitstream Charter', 'XCharter', 'Iowan Old Style', 'Source Serif 4', Georgia, serif"
+    options:
+      -
+        label: Serif (Charter)
+        value: "Charter, 'Bitstream Charter', 'XCharter', 'Iowan Old Style', 'Source Serif 4', Georgia, serif"
+      -
+        label: Sans (system)
+        value: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif"
+      -
+        label: Helvetica (original)
+        value: "'Helvetica Neue', Helvetica, Arial, sans-serif"
+  -
+    id: hl-justify
+    title: Justify paragraphs
+    description: Even right edge, as in a printed book. Can leave wide gaps next to long link names.
+    type: class-toggle
+    default: false
+  -
+    id: hl-full-properties
+    title: Full-size properties
+    description: Show the note properties at Obsidian's normal size instead of the compact version
+    type: class-toggle
+    default: false
+  -
+    id: hl-round-bullets
+    title: Round list bullets
+    description: Use Obsidian's round bullets instead of dashes
+    type: class-toggle
+    default: false
+  -
+    id: hl-heading-colors
+    title: Highlighter pens
+    type: heading
+    level: 2
+    collapsed: false
+  -
+    id: hl-link
+    title: Links
+    type: variable-themed-color
+    format: hex
+    default-light: '#DBF1FF'
+    default-dark: '#1A4056'
+  -
+    id: hl-unresolved
+    title: Unresolved links
+    type: variable-themed-color
+    format: hex
+    default-light: '#FFF0B0'
+    default-dark: '#3B3623'
+  -
+    id: hl-tag
+    title: Tags
+    type: variable-themed-color
+    format: hex
+    default-light: '#F9E0FF'
+    default-dark: '#472452'
+  -
+    id: hl-mark
+    title: Highlights (==text==)
+    type: variable-themed-color
+    format: hex
+    default-light: '#FFE45E'
+    default-dark: '#5C4C06'
+*/
+
+
+/* ------------------------------------------------------------------------ */
+/* Palette                                                                  */
+/* ------------------------------------------------------------------------ */
+
+.theme-light {
+	/* Highlighter pens */
+	--hl-link: #DBF1FF;
+	--hl-link-hover: #C6E8FF;
+	--hl-unresolved: #FFF0B0;
+	--hl-tag: #F9E0FF;
+	--hl-tag-hover: #F2CEFB;
+	--hl-mark: #FFE45E;
+	--hl-rule: #1F1F1F;
+	--hl-hairline: #EBEBEB;
+	--hl-quote-rule: #D9D9D9;
+
+	/* Paper: neutral greys, no warm or green tint */
+	--background-primary: #FFFFFF;
+	--background-primary-alt: #F7F7F7;
+	--background-secondary: #F7F7F7;
+	--background-secondary-alt: #F0F0F0;
+	--background-modifier-border: #E4E4E4;
+	--background-modifier-border-hover: #D4D4D4;
+	--background-modifier-border-focus: #BDBDBD;
+	--background-modifier-hover: rgba(0, 0, 0, 0.04);
+	--background-modifier-active-hover: rgba(0, 150, 220, 0.1);
+	--divider-color: #E6E6E6;
+
+	/* Ink: soft black rather than #000 */
+	--text-normal: #1F1F1F;
+	--text-muted: #5E5E5E;
+	--text-faint: #9A9A9A;
+	--text-on-accent: #FFFFFF;
+	--text-selection: rgba(0, 150, 220, 0.16);
+	--text-highlight-bg: var(--hl-mark);
+	--text-highlight-bg-rgb: 255, 228, 94;
+	--caret-color: var(--text-normal);
+
+	/* Interface accent: the original cyan-blue */
+	--accent-h: 196;
+	--accent-s: 100%;
+	--accent-l: 45%;
+	--text-accent: #0E7CAB;
+	--text-accent-hover: #19647E;
+
+	/* Code, after Alabaster */
+	--code-background: #F5F5F5;
+	--code-normal: var(--text-normal);
+	--code-comment: #AA3731;
+	--code-function: #325CC0;
+	--code-keyword: var(--text-normal);
+	--code-important: #AA3731;
+	--code-operator: #777777;
+	--code-property: var(--text-normal);
+	--code-punctuation: #777777;
+	--code-string: #448C27;
+	--code-tag: #325CC0;
+	--code-value: #7A3E9D;
+
+	--graph-node: #1F1F1F;
+	--graph-node-unresolved: #E2B800;
+	--graph-node-tag: #D98AEE;
+	--graph-node-attachment: #9A9A9A;
+	--graph-line: #DDDDDD;
+}
+
+.theme-dark {
+	--hl-link: #1A4056;
+	--hl-link-hover: #22536F;
+	--hl-unresolved: #3B3623;
+	--hl-tag: #472452;
+	--hl-tag-hover: #5A2F68;
+	--hl-mark: #5C4C06;
+	--hl-rule: #D9D9D9;
+	--hl-hairline: #2E2E2E;
+	--hl-quote-rule: #3F3F3F;
+
+	--background-primary: #1E1E1E;
+	--background-primary-alt: #232323;
+	--background-secondary: #191919;
+	--background-secondary-alt: #141414;
+	--background-modifier-border: #303030;
+	--background-modifier-border-hover: #3D3D3D;
+	--background-modifier-border-focus: #505050;
+	--background-modifier-hover: rgba(255, 255, 255, 0.06);
+	--background-modifier-active-hover: rgba(0, 177, 239, 0.18);
+	--divider-color: #2B2B2B;
+
+	--text-normal: #E3E3E3;
+	--text-muted: #A3A3A3;
+	--text-faint: #6B6B6B;
+	--text-on-accent: #FFFFFF;
+	--text-selection: rgba(0, 177, 239, 0.28);
+	--text-highlight-bg: var(--hl-mark);
+	--text-highlight-bg-rgb: 92, 76, 6;
+	--caret-color: var(--text-normal);
+
+	--accent-h: 196;
+	--accent-s: 100%;
+	--accent-l: 47%;
+	--text-accent: #4CC4F0;
+	--text-accent-hover: #7FD6F5;
+
+	--code-background: #262626;
+	--code-normal: var(--text-normal);
+	--code-comment: #DFDF8E;
+	--code-function: #71ADE7;
+	--code-keyword: var(--text-normal);
+	--code-important: #DFDF8E;
+	--code-operator: #8A8A8A;
+	--code-property: var(--text-normal);
+	--code-punctuation: #8A8A8A;
+	--code-string: #95CB82;
+	--code-tag: #71ADE7;
+	--code-value: #CC8BC9;
+
+	--graph-node: #D9D9D9;
+	--graph-node-unresolved: #B39300;
+	--graph-node-tag: #B267C6;
+	--graph-node-attachment: #6B6B6B;
+	--graph-line: #3A3A3A;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Typography                                                               */
+/* ------------------------------------------------------------------------ */
+
+body {
+	/* Notes are set in a serif, like a typeset page; the interface keeps
+	   the system font so it stays out of the way. */
+	--font-text-theme: Charter, 'Bitstream Charter', 'XCharter', 'Iowan Old Style', 'Source Serif 4', Georgia, serif;
+	--font-monospace-theme: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, Menlo, monospace;
+
+	--line-height-normal: 1.6;
+	--p-spacing: 0.7rem;
+	--heading-spacing: 1.75rem;
+
+	/* Heading scale after LaTeX's article class:
+	   \section \Large, \subsection \large, \subsubsection \normalsize,
+	   then italic and small-caps run-down levels. */
+	--h1-size: 1.44em;
+	--h2-size: 1.2em;
+	--h3-size: 1.05em;
+	--h4-size: 1em;
+	--h5-size: 1em;
+	--h6-size: 1em;
+	--h1-weight: 700;
+	--h2-weight: 700;
+	--h3-weight: 700;
+	--h4-weight: 700;
+	--h5-weight: 400;
+	--h6-weight: 400;
+	--h4-style: italic;
+	--h5-style: italic;
+	--h6-variant: small-caps;
+	--h6-letter-spacing: 0.04em;
+	--h6-color: var(--text-muted);
+	--h1-line-height: 1.25;
+	--h2-line-height: 1.3;
+	--inline-title-size: 1.75em;
+	--inline-title-weight: 700;
+	--inline-title-line-height: 1.2;
+
+	--bold-weight: 700;
+
+	/* Links: ink colour, no underline; the pen does the work */
+	--link-color: var(--text-normal);
+	--link-color-hover: var(--text-normal);
+	--link-decoration: none;
+	--link-decoration-hover: none;
+	--link-external-color: var(--text-normal);
+	--link-external-color-hover: var(--text-normal);
+	--link-external-decoration: none;
+	--link-external-decoration-hover: none;
+	--link-unresolved-color: var(--text-normal);
+	--link-unresolved-opacity: 1;
+	--link-unresolved-decoration-style: none;
+
+	/* Tags are pen strokes too, not pills */
+	--tag-color: var(--text-normal);
+	--tag-color-hover: var(--text-normal);
+	--tag-background: var(--hl-tag);
+	--tag-background-hover: var(--hl-tag-hover);
+	--tag-border-width: 0px;
+	--tag-radius: 0.3em;
+	--tag-size: 0.95em;
+	--tag-padding-x: 0.3em;
+	--tag-padding-y: 0.1em;
+
+	/* Lists */
+	--list-marker-color: var(--text-muted);
+	--list-marker-color-hover: var(--text-normal);
+	--list-marker-color-collapsed: var(--text-normal);
+	--list-spacing: 0.15em;
+
+	/* Blockquotes: a quiet hairline, as in a book */
+	--blockquote-border-color: var(--hl-quote-rule);
+	--blockquote-border-thickness: 2px;
+	--blockquote-color: var(--text-muted);
+
+	/* Rules and tables */
+	--hr-color: var(--background-modifier-border-hover);
+	--hr-thickness: 1px;
+	--table-border-color: var(--hl-hairline);
+	--table-header-background: transparent;
+	--table-header-background-hover: transparent;
+	--table-row-alt-background: transparent;
+	--table-header-weight: 700;
+
+	/* Code */
+	--code-radius: 4px;
+	--code-size: 0.84em;
+
+	/* Task checkboxes */
+	--checkbox-radius: 3px;
+	--checklist-done-color: var(--text-faint);
+
+	--footnote-size: 0.85em;
+
+	/* Sidebar: the open file gets the link pen */
+	--nav-item-color: var(--text-normal);
+	--nav-item-color-hover: var(--text-normal);
+	--nav-item-color-active: var(--text-normal);
+	--nav-item-background-active: var(--hl-link);
+	--nav-item-background-selected: var(--hl-link-hover);
+	--nav-item-radius: 4px;
+
+	/* Shared pen geometry: a little ink above, below and beside the
+	   letters, with slightly uneven corners like a real marker. */
+	--hl-radius: 0.25em 0.4em 0.3em 0.35em;
+	--hl-pad-y: 0.1em;
+	--hl-pad-x: 0.15em;
+}
+
+.markdown-rendered,
+.markdown-source-view {
+	font-kerning: normal;
+	font-variant-ligatures: common-ligatures;
+	text-rendering: optimizeLegibility;
+
+	/* Scoped so settings and modal checkboxes keep the normal accent */
+	--checkbox-color: var(--text-normal);
+	--checkbox-color-hover: var(--text-muted);
+	--checkbox-marker-color: var(--background-primary);
+	--checkbox-border-color: var(--text-muted);
+	--checkbox-border-color-hover: var(--text-normal);
+}
+
+.markdown-rendered .inline-title,
+.inline-title {
+	letter-spacing: -0.01em;
+}
+
+.markdown-rendered h1,
+.markdown-source-view .HyperMD-header-1 {
+	letter-spacing: -0.005em;
+}
+
+/* A heading keeps a little more space below it than a paragraph break */
+.markdown-rendered :is(h1, h2, h3, h4, h5, h6) {
+	margin-block-end: 0.9rem;
+}
+
+/* Book-style line breaking. Automatic hyphenation evens out the right edge;
+   `text-wrap: pretty` lets the browser balance the end of each paragraph
+   (no lone word on the last line), the closest a browser gets to TeX.
+   Full justification is opt-in: notes full of long link names can't be
+   hyphenated, and justifying around them opens wide gaps between words. */
+.markdown-rendered :is(p, li, blockquote),
+.markdown-source-view.mod-cm6.is-live-preview .cm-line:not(.HyperMD-header):not(.HyperMD-codeblock):not(.HyperMD-table-row) {
+	text-wrap: pretty;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+	/* only hyphenate words of 7+ letters, leaving 3+ on each side */
+	hyphenate-limit-chars: 7 3 3;
+}
+
+body.hl-justify .markdown-rendered :is(p, li),
+body.hl-justify .markdown-source-view.mod-cm6.is-live-preview .cm-line:not(.HyperMD-header):not(.HyperMD-codeblock):not(.HyperMD-table-row) {
+	text-align: justify;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* The highlighter pen                                                      */
+/* ------------------------------------------------------------------------ */
+
+.markdown-rendered mark,
+.markdown-rendered .internal-link,
+.markdown-rendered .external-link,
+.metadata-property-value .internal-link,
+.cm-s-obsidian span.cm-highlight:not(.obsidian-search-match-highlight),
+.markdown-source-view.mod-cm6 .cm-line:not(.HyperMD-codeblock) :is(.cm-hmd-internal-link, .cm-link, .cm-url) {
+	border-radius: var(--hl-radius);
+	padding: var(--hl-pad-y) var(--hl-pad-x);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	transition: background-color 120ms ease;
+}
+
+/* Highlights */
+.markdown-rendered mark,
+.cm-s-obsidian span.cm-highlight:not(.obsidian-search-match-highlight),
+.cm-s-obsidian span.cm-formatting-highlight {
+	background-color: var(--hl-mark);
+	color: var(--text-normal);
+}
+
+/* Links */
+.markdown-rendered .internal-link,
+.markdown-rendered .external-link,
+.metadata-property-value .internal-link,
+.markdown-source-view.mod-cm6 .cm-line:not(.HyperMD-codeblock) :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-formatting-link) {
+	background-color: var(--hl-link);
+}
+
+.markdown-rendered .external-link {
+	/* the pen already marks it as a link; drop the arrow icon */
+	background-image: none;
+}
+
+.markdown-rendered .internal-link.is-unresolved,
+.metadata-property-value .internal-link.is-unresolved,
+.markdown-source-view.mod-cm6 .cm-line .cm-hmd-internal-link.is-unresolved,
+.markdown-source-view.mod-cm6 .cm-line .cm-hmd-internal-link .is-unresolved {
+	background-color: var(--hl-unresolved);
+}
+
+@media (hover: hover) {
+	.markdown-rendered :is(.internal-link, .external-link):not(.is-unresolved):hover,
+	.metadata-property-value .internal-link:not(.is-unresolved):hover {
+		background-color: var(--hl-link-hover);
+	}
+}
+
+/* Tags in Properties are chips with a remove button, not words in running
+   text; give them more room than inline tags. */
+.metadata-property-value[data-property-type="tags"] {
+	--tag-padding-x: 0.5em;
+	--tag-padding-y: 0.25em;
+}
+
+.markdown-source-view.mod-cm6 .cm-underline {
+	text-decoration: none;
+}
+
+.markdown-rendered :is(mark, .internal-link, .external-link) :is(strong, em) {
+	color: inherit;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Lists: dashes rather than dots                                           */
+/* ------------------------------------------------------------------------ */
+
+/* The marker is a real en dash in the text face, so it has the same weight,
+   height and colour logic as the dashes in the prose around it. */
+body:not(.hl-round-bullets) .list-bullet::after {
+	content: '\2013';
+	width: auto;
+	height: auto;
+	background-color: transparent;
+	border-radius: 0;
+	font-family: var(--font-text);
+	font-weight: 400;
+	line-height: 1;
+	color: var(--list-marker-color);
+}
+
+/* In the editor the marker sits on the hidden "-" right before the text;
+   pull it back a little so it hangs in the gutter with room to breathe. */
+body:not(.hl-round-bullets) .markdown-source-view.mod-cm6 {
+	--list-bullet-transform: translateX(-0.2em);
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Vertical rhythm in the editor. Blank lines are a full line tall, which    */
+/* spaces paragraphs further apart than a typeset page. Shrink them: a      */
+/* little between paragraphs, more after a heading, most before a heading   */
+/* so each heading clearly belongs to the text below it.                    */
+/* ------------------------------------------------------------------------ */
+
+.markdown-source-view.mod-cm6.is-live-preview .cm-line:not(.HyperMD-codeblock):has(> br:only-child) {
+	line-height: 0.6;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-header + .cm-line:not(.HyperMD-codeblock):has(> br:only-child) {
+	line-height: 0.9;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .cm-line:not(.HyperMD-codeblock):has(> br:only-child):has(+ .cm-line.HyperMD-header) {
+	line-height: 1.6;
+}
+
+/* Obsidian removes all space between a heading and the line right after
+   it; with no blank line in between, add a little. */
+.cm-s-obsidian .cm-line.HyperMD-header + .cm-line:not(.HyperMD-header):not(:has(>br:only-child)) {
+	padding-top: 0.5em;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Properties: compact and quiet, like the metadata block in a margin, so   */
+/* the note starts sooner. Style Settings can restore the full size.        */
+/* ------------------------------------------------------------------------ */
+
+body:not(.hl-full-properties) .metadata-container {
+	--metadata-label-font-size: var(--font-ui-smaller);
+	--metadata-input-font-size: var(--font-ui-smaller);
+	--metadata-input-height: 1.75em;
+	--metadata-label-width: 7.5em;
+	--metadata-gap: 0px;
+	--metadata-padding: 0 0 var(--size-4-2);
+	--metadata-input-text-color: var(--text-muted);
+	--icon-size: var(--icon-xs);
+	--icon-stroke: var(--icon-xs-stroke-width);
+	--tag-size: var(--font-ui-smaller);
+	font-size: var(--font-ui-smaller);
+}
+
+body:not(.hl-full-properties) .metadata-properties-heading {
+	margin-bottom: var(--size-4-1);
+}
+
+body:not(.hl-full-properties) .metadata-properties-title {
+	font-size: var(--font-ui-smaller);
+	color: var(--text-faint);
+	font-weight: 500;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+body:not(.hl-full-properties) .metadata-property-icon {
+	padding-block: 0;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Blockquotes                                                              */
+/* ------------------------------------------------------------------------ */
+
+.markdown-rendered blockquote {
+	padding-inline-start: 1.1em;
+	padding-block: 0.1em;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Code                                                                     */
+/* ------------------------------------------------------------------------ */
+
+.markdown-rendered :not(pre) > code {
+	padding: 0.1em 0.3em;
+}
+
+.markdown-rendered pre {
+	border-radius: 6px;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Tables, booktabs style: strong top and bottom rules, a thinner rule      */
+/* under the header, hairlines between rows, no vertical lines.             */
+/* ------------------------------------------------------------------------ */
+
+.markdown-rendered table {
+	border-top: 1.5px solid var(--hl-rule);
+	border-bottom: 1.5px solid var(--hl-rule);
+}
+
+.markdown-rendered th,
+.markdown-rendered td {
+	border-inline: none;
+}
+
+.markdown-rendered thead > tr > th {
+	border-top: none;
+	border-bottom: 1px solid var(--hl-rule);
+}
+
+.markdown-rendered tbody > tr:last-child > td {
+	border-bottom: none;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Interface                                                                */
+/* ------------------------------------------------------------------------ */
+
+/* The selected suggestion (quick switcher, command palette, link
+   autocomplete) gets the link pen, like the open file in the sidebar. */
+.suggestion-item.is-selected {
+	background-color: var(--hl-link);
+}
+
+.theme-light .prompt,
+.theme-light .menu,
+.theme-light .suggestion-container {
+	box-shadow:
+		0 1px 2px rgba(0, 0, 0, 0.05),
+		0 8px 28px rgba(0, 0, 0, 0.1);
+}
