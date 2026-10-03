@@ -64,7 +64,7 @@ settings:
     title: Links
     type: variable-themed-color
     format: hex
-    default-light: '#DBF1FF'
+    default-light: '#EBF7FF'
     default-dark: '#1A4056'
   -
     id: hl-unresolved
@@ -96,8 +96,8 @@ settings:
 
 .theme-light {
 	/* Highlighter pens */
-	--hl-link: #DBF1FF;
-	--hl-link-hover: #C6E8FF;
+	--hl-link: #EBF7FF;
+	--hl-link-hover: #DCF1FF;
 	--hl-unresolved: #FFF0B0;
 	--hl-tag: #F9E0FF;
 	--hl-tag-hover: #F2CEFB;
