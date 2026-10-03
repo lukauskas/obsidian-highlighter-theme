@@ -323,6 +323,9 @@ body {
 	--hl-radius: 0.25em 0.4em 0.3em 0.35em;
 	--hl-pad-y: 0.1em;
 	--hl-pad-x: 0.15em;
+
+	/* Lucide external-link, as Obsidian uses */
+	--hl-external-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E");
 }
 
 .markdown-rendered,
@@ -407,9 +410,40 @@ body.hl-justify .markdown-source-view.mod-cm6.is-live-preview .cm-line:not(.Hype
 	background-color: var(--hl-link);
 }
 
+/* External links keep an arrow, drawn inside the pen rather than hanging
+   off its edge. Obsidian's own arrow is a background image placed in the
+   link's end padding, which the pen padding overrides, so swap in a masked
+   icon that follows the text colour. */
 .markdown-rendered .external-link {
-	/* the pen already marks it as a link; drop the arrow icon */
 	background-image: none;
+}
+
+.markdown-rendered .external-link::after,
+.markdown-source-view.mod-cm6 .cm-line .external-link::after {
+	content: "";
+	display: inline-block;
+	width: 0.7em;
+	height: 0.7em;
+	margin-inline-start: 0.2em;
+	vertical-align: 0.05em;
+	background-color: var(--text-muted);
+	-webkit-mask: var(--hl-external-icon) center / contain no-repeat;
+	mask: var(--hl-external-icon) center / contain no-repeat;
+}
+
+/* Live Preview draws the arrow as a separate empty widget after the link
+   text. Join the two into one stroke of pen: square off the link's end and
+   start the widget flush against it. */
+.markdown-source-view.mod-cm6 .cm-line .external-link {
+	background-image: none;
+	padding-inline-start: 0;
+	border-start-start-radius: 0;
+	border-end-start-radius: 0;
+}
+
+.markdown-source-view.mod-cm6 .cm-line :is(.cm-link, .cm-url):has(+ .external-link, + .cm-widgetBuffer + .external-link) {
+	border-start-end-radius: 0;
+	border-end-end-radius: 0;
 }
 
 .markdown-rendered .internal-link.is-unresolved,
