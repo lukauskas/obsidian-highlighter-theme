@@ -8,7 +8,7 @@ Typography borrows from LaTeX: notes are set in Charter (bundled with macOS), he
 Code blocks use the colours of [sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster), which inspired the theme.
 Lists use dashes instead of dots. The interface keeps your system font.
 
-Works with Obsidian 1.5 and later, in both light and dark mode.
+Works with Obsidian 1.5 and later. Designed and tested in light mode; dark mode styles exist but are untested.
 
 Originally based on the code from [rcvd/obsidian_ia](https://github.com/rcvd/obsidian_ia).
 
