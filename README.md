@@ -12,13 +12,9 @@ Works with Obsidian 1.5 and later, in both light and dark mode.
 
 Originally based on the code from [rcvd/obsidian_ia](https://github.com/rcvd/obsidian_ia).
 
-## Screenshots
+## Screenshot
 
-_Screenshots below are from the original version of the theme (Obsidian 0.10)._
-
-![screenshots/screenshot-welcome-to-obsidian.png](screenshots/screenshot-welcome-to-obsidian.png)
-
-![screenshots/screenshot-more-markdown-examples.png](screenshots/screenshot-more-markdown-examples.png)
+![Highlighter theme](screenshot.png)
 
 ## Installation
 

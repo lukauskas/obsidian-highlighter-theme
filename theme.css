@@ -521,9 +521,10 @@ body:not(.hl-round-bullets) .markdown-source-view.mod-cm6 {
 }
 
 /* Obsidian removes all space between a heading and the line right after
-   it; with no blank line in between, add a little. */
+   it; with no blank line in between, add as much as the shrunk blank line
+   above (line-height 0.9) would, so both spellings look the same. */
 .cm-s-obsidian .cm-line.HyperMD-header + .cm-line:not(.HyperMD-header):not(:has(>br:only-child)) {
-	padding-top: 0.5em;
+	padding-top: 0.9em;
 }
 
 
